@@ -243,17 +243,38 @@ async function ask(text){
       history: conversationHistory
     };
 
-    const r = await fetch('/chat', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(payload)
-    });
+    // Vercel rewrites /chat to the Python function. Try /api directly as a
+    // compatibility fallback if the /chat rewrite is missing in a deployment.
+    let r;
+    try {
+      r = await fetch('/chat', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload)
+      });
+      if (r.status === 404 || r.status === 405) {
+        r = await fetch('/api', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(payload)
+        });
+      }
+    } catch (firstError) {
+      r = await fetch('/api', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload)
+      });
+    }
 
     if(!r.ok) {
-      throw new Error('Server returned HTTP ' + r.status);
+      throw new Error('Chat API returned HTTP ' + r.status);
     }
 
     const d = await r.json();
+    if (!d || typeof d.answer !== 'string') {
+      throw new Error('Chat API response did not include an answer');
+    }
     const ms = (performance.now() - t).toFixed(1);
     
     removeTyping();
@@ -287,10 +308,21 @@ async function ask(text){
     conversationHistory.push({role: 'assistant', content: d.answer});
 
   } catch(err) {
+    console.error('WITty chat request failed:', err);
     removeTyping();
     const errBubble = document.createElement('div');
     errBubble.className = 'bot';
-    errBubble.innerHTML = '<b>Library Assistant</b><br>Sorry, something went wrong while connecting to the assistant. Please make sure the local Ollama service is running, or visit the WIT Library circulation desk for help.<div class="meta">Error connecting to service</div>';
+    const label = document.createElement('b');
+    label.textContent = 'Library Assistant';
+    errBubble.appendChild(label);
+    errBubble.appendChild(document.createElement('br'));
+    const message = document.createElement('span');
+    message.textContent = 'I could not send your message to the chat service. Please try again. If this keeps happening, check the Vercel deployment logs.';
+    errBubble.appendChild(message);
+    const meta = document.createElement('div');
+    meta.className = 'meta';
+    meta.textContent = 'Chat request failed';
+    errBubble.appendChild(meta);
     c.appendChild(errBubble);
   } finally {
     setControlsDisabled(false);
@@ -300,6 +332,13 @@ async function ask(text){
 }
 
 f.addEventListener('submit', e => {
+  e.preventDefault();
+  ask(m.value);
+});
+
+// Explicit click handler helps ensure the Send button works even if the form's
+// submit behavior is altered by browser extensions or surrounding markup.
+btn.addEventListener('click', e => {
   e.preventDefault();
   ask(m.value);
 });
