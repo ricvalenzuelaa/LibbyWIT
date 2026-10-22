@@ -1,0 +1,15 @@
+query,expected_intent
+What time does the library open?,library_hours
+Is the library open on Saturday?,library_hours
+How many books can I borrow?,borrowing
+How long can I keep a book?,borrowing
+Are there fines for overdue books?,penalties
+What happens if a book is late?,penalties
+Do I need my student ID?,library_card
+How can I get a library card?,library_card
+Is the book available?,catalog_availability
+Where can I search for books?,catalog_availability
+How do I cite a website?,citation_help
+Can you help with APA citation?,citation_help
+Can you order food for me?,fallback
+What is the weather today?,fallback

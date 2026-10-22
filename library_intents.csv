@@ -1,0 +1,478 @@
+text,intent
+Hi,greeting
+Hello,greeting
+Hey,greeting
+Hello there,greeting
+Good morning,greeting
+Good afternoon,greeting
+Good evening,greeting
+"Hi, is anyone there?",greeting
+Hey librarian bot,greeting
+"Hello, I need help",greeting
+Kumusta,greeting
+Hello po,greeting
+Good day,greeting
+Yo,greeting
+Anyone here?,greeting
+Bye,goodbye
+Goodbye,goodbye
+See you later,goodbye
+See you,goodbye
+That's all,goodbye
+"I'm done, thanks",goodbye
+Talk to you later,goodbye
+Okay bye,goodbye
+Have a nice day,goodbye
+"Sige, bye",goodbye
+Paalam,goodbye
+Until next time,goodbye
+I have to go now,goodbye
+Thanks,thanks
+Thank you,thanks
+Thank you so much,thanks
+Thanks a lot,thanks
+Much appreciated,thanks
+That was helpful,thanks
+"Great, thanks",thanks
+Salamat,thanks
+Salamat po,thanks
+"Awesome, thank you",thanks
+You're helpful,thanks
+"Perfect, thanks",thanks
+What can you do?,bot_capabilities
+Help,bot_capabilities
+What can you help me with?,bot_capabilities
+How do you work?,bot_capabilities
+What are your features?,bot_capabilities
+What questions can I ask you?,bot_capabilities
+Who are you?,bot_capabilities
+Are you a bot?,bot_capabilities
+What is this chatbot for?,bot_capabilities
+Can you help me with the library?,bot_capabilities
+I need assistance,bot_capabilities
+What services do you offer?,bot_capabilities
+Is this book available?,book_availability
+Is Noli Me Tangere available?,book_availability
+Do you have Atomic Habits?,book_availability
+Does the library have Introduction to Algorithms?,book_availability
+Is the book Clean Code in stock?,book_availability
+Can I borrow The Great Gatsby right now?,book_availability
+Is Database System Concepts checked out?,book_availability
+Check if Operating System Concepts is available,book_availability
+Do you have a copy of Calculus by James Stewart?,book_availability
+Is there a copy of El Filibusterismo on the shelf?,book_availability
+Available pa ba ang Florante at Laura?,book_availability
+May copy ba kayo ng Sapiens?,book_availability
+Is Artificial Intelligence: A Modern Approach available?,book_availability
+Are there any copies left of Rich Dad Poor Dad?,book_availability
+Is the book I want still available?,book_availability
+How many copies of Python Crash Course do you have?,book_availability
+Has anyone borrowed Computer Networking?,book_availability
+Is this title currently on loan?,book_availability
+Can you check book availability for me?,book_availability
+"I'm looking for The Pragmatic Programmer, is it there?",book_availability
+Who is the author of Noli Me Tangere?,book_author
+Who wrote El Filibusterismo?,book_author
+Who wrote The Great Gatsby?,book_author
+Who's the author of Harry Potter and the Sorcerer's Stone?,book_author
+Who authored Introduction to Algorithms?,book_author
+Do you know who wrote Atomic Habits?,book_author
+Author of Database System Concepts?,book_author
+Who wrote Florante at Laura?,book_author
+Who is the writer of this book?,book_author
+Whose book is Rich Dad Poor Dad?,book_author
+Who is the author of Clean Code?,book_author
+Can you tell me the author of Sapiens?,book_author
+Who wrote To Kill a Mockingbird?,book_author
+Who are the authors of Operating System Concepts?,book_author
+Sino ang sumulat ng Noli Me Tangere?,book_author
+Sino ang author ng The Alchemist?,book_author
+Who's behind the book The Hunger Games?,book_author
+Author of The Pragmatic Programmer?,book_author
+Tell me who wrote Artificial Intelligence: A Modern Approach,book_author
+Who created the book Calculus Early Transcendentals?,book_author
+What books did Jose Rizal write?,books_by_author
+Does the library have books by Stephen King?,books_by_author
+Show me all books by J.K. Rowling,books_by_author
+Which books were written by Nick Joaquin?,books_by_author
+Is there anything by Paulo Coelho?,books_by_author
+List books by Robert C. Martin,books_by_author
+Do you have any book from Stuart Russell?,books_by_author
+Books by Dan Brown?,books_by_author
+Find books written by Haruki Murakami,books_by_author
+What titles do you have from James Clear?,books_by_author
+Anong libro ang isinulat ni Rizal?,books_by_author
+Any books from Andrew Tanenbaum?,books_by_author
+Search by author: George Orwell,books_by_author
+I want to see books by Agatha Christie,books_by_author
+What else did this author write?,books_by_author
+Do you have books about artificial intelligence?,book_search_subject
+I need books on database design,book_search_subject
+Find books about machine learning,book_search_subject
+Books about Philippine history,book_search_subject
+Recommend books on programming,book_search_subject
+Do you have books on web development?,book_search_subject
+I'm looking for books about psychology,book_search_subject
+Show me books about networking,book_search_subject
+Any references for calculus?,book_search_subject
+I need books for my research on education,book_search_subject
+Books related to cybersecurity,book_search_subject
+What books do you have about business management?,book_search_subject
+Suggest a book about data structures,book_search_subject
+Do you have novels?,book_search_subject
+Libro tungkol sa kasaysayan ng Pilipinas,book_search_subject
+Do you have books about software engineering?,book_search_subject
+I need reference materials for my thesis,book_search_subject
+Looking for books on natural language processing,book_search_subject
+What are good books for beginners in Python?,book_search_subject
+Find books by subject,book_search_subject
+Who published Operating System Concepts?,book_details
+What year was To Kill a Mockingbird published?,book_details
+What edition of Computer Networking do you have?,book_details
+What's the ISBN of The Pragmatic Programmer?,book_details
+How many pages does Clean Code have?,book_details
+What is Sapiens about?,book_details
+What genre is The Hunger Games?,book_details
+When was Noli Me Tangere published?,book_details
+Who is the publisher of Database System Concepts?,book_details
+Give me the details of this book,book_details
+What is the latest edition available?,book_details
+What language is this book written in?,book_details
+Is this a hardcover or paperback?,book_details
+Can you give me the ISBN?,book_details
+What's the publication date of Atomic Habits?,book_details
+Anong taon na-publish ang El Filibusterismo?,book_details
+Where can I find this book?,book_location
+What is the call number of Calculus by James Stewart?,book_location
+Which shelf is Clean Code on?,book_location
+Where is the computer science section?,book_location
+What floor is the reference section?,book_location
+Where are the Filipiniana books?,book_location
+Where can I find the fiction books?,book_location
+Saan makikita ang libro tungkol sa programming?,book_location
+How do I find a book using its call number?,book_location
+What is the Dewey Decimal number for programming?,book_location
+Where are the thesis copies kept?,book_location
+Where is the periodicals section?,book_location
+Which section has the math books?,book_location
+Where do I find the textbooks?,book_location
+Can you tell me where this book is shelved?,book_location
+Can I reserve a book?,reserve_book
+How do I reserve a book that is checked out?,reserve_book
+I want to put a hold on Atomic Habits,reserve_book
+Can I place a reservation online?,reserve_book
+How long will a reserved book be held for me?,reserve_book
+Reserve Introduction to Algorithms for me,reserve_book
+How do I request a book?,reserve_book
+Can I be notified when the book is available?,reserve_book
+Pwede bang mag-reserve ng libro?,reserve_book
+What happens if the book I want is borrowed?,reserve_book
+Is there a waiting list for popular books?,reserve_book
+Can I book a copy ahead of time?,reserve_book
+How do I hold a book until I arrive?,reserve_book
+Can you request a title the library doesn't have?,reserve_book
+Can I suggest a book for the library to buy?,reserve_book
+What time does the library open?,operating_hours
+What time does the library close?,operating_hours
+What are the library hours?,operating_hours
+Is the library open today?,operating_hours
+Is the library open on Saturday?,operating_hours
+Is the library open on Sundays?,operating_hours
+Is the library open during holidays?,operating_hours
+Until what time is the library open?,operating_hours
+Open ba ang library ngayon?,operating_hours
+Anong oras magbubukas ang library?,operating_hours
+Anong oras nagsasara ang library?,operating_hours
+What are the opening hours on weekends?,operating_hours
+Do you close for lunch?,operating_hours
+Is the library open during semester break?,operating_hours
+What are your schedules this week?,operating_hours
+Is the library open tomorrow?,operating_hours
+Are you open during exam week?,operating_hours
+When can I visit the library?,operating_hours
+Library schedule please,operating_hours
+Does the library have extended hours during finals?,operating_hours
+Where is the library located?,library_location
+How do I get to the library?,library_location
+Where is the library?,library_location
+Which building is the library in?,library_location
+What floor is the library on?,library_location
+Saan ang library?,library_location
+Directions to the library,library_location
+Is the library inside the main building?,library_location
+Where is the library entrance?,library_location
+Can you tell me the library address?,library_location
+Where can I find the library on campus?,library_location
+Is there more than one library branch?,library_location
+How do I get a library card?,library_card_apply
+How can I apply for a library card?,library_card_apply
+What do I need to register as a library member?,library_card_apply
+Can new students get a library card?,library_card_apply
+Where do I get my library card?,library_card_apply
+Is the library card free?,library_card_apply
+What are the requirements for a library card?,library_card_apply
+Paano kumuha ng library card?,library_card_apply
+Do I need my school ID to borrow books?,library_card_apply
+Is my student ID my library card?,library_card_apply
+How long does it take to get a library card?,library_card_apply
+How do I become a member of the library?,library_card_apply
+Do I need to register before borrowing?,library_card_apply
+"I'm a freshman, how do I get a library card?",library_card_apply
+What documents are needed for library registration?,library_card_apply
+I lost my library card,library_card_lost
+What do I do if I lose my library card?,library_card_lost
+My library card is damaged,library_card_lost
+How do I replace my library card?,library_card_lost
+Nawala ang library card ko,library_card_lost
+Is there a fee for a replacement card?,library_card_lost
+Can I still borrow books without my card?,library_card_lost
+I forgot my library card at home,library_card_lost
+My card was stolen,library_card_lost
+How do I report a lost library card?,library_card_lost
+Can I get a new library card?,library_card_lost
+How long does it take to replace a lost card?,library_card_lost
+How long is my library card valid?,library_card_validity
+Does my library card expire?,library_card_validity
+When does my library card expire?,library_card_validity
+How do I renew my library card?,library_card_validity
+My library card expired,library_card_validity
+Do I need to renew my card every semester?,library_card_validity
+How do I validate my library card?,library_card_validity
+Is my card still active?,library_card_validity
+How do I check if my membership is active?,library_card_validity
+What is the validity of the library card?,library_card_validity
+Do alumni keep their library cards?,library_card_validity
+How many books can I borrow?,borrowing_limit
+What is the maximum number of books I can borrow at a time?,borrowing_limit
+Is there a borrowing limit?,borrowing_limit
+Can I borrow more than three books?,borrowing_limit
+Ilan ang pwedeng hiramin na libro?,borrowing_limit
+How many books can a student borrow?,borrowing_limit
+Can I borrow multiple books at once?,borrowing_limit
+What is the limit for faculty members?,borrowing_limit
+How many books can I take home?,borrowing_limit
+Are there limits for reference books?,borrowing_limit
+Can I borrow DVDs or magazines too?,borrowing_limit
+What can I borrow with my library card?,borrowing_limit
+How long can I borrow a book?,loan_period
+What is the loan period?,loan_period
+How many days can I keep a book?,loan_period
+When is the due date?,loan_period
+How long can I keep a borrowed book?,loan_period
+Gaano katagal pwedeng hiramin ang libro?,loan_period
+What is the borrowing duration?,loan_period
+When do I need to return the book?,loan_period
+How long is the loan period for textbooks?,loan_period
+Is the loan period different for reserved books?,loan_period
+How do I know when my book is due?,loan_period
+What's the return date for borrowed books?,loan_period
+Can I renew a book?,renew_book
+How do I renew my borrowed book?,renew_book
+Can I extend the due date?,renew_book
+Can I renew a book online?,renew_book
+How many times can I renew a book?,renew_book
+I need more time with my book,renew_book
+Pwede bang i-renew ang libro?,renew_book
+How do I extend my loan?,renew_book
+Can I renew a book that is overdue?,renew_book
+Can I renew if someone has reserved it?,renew_book
+Renew Clean Code for me,renew_book
+What is the renewal process?,renew_book
+How do I return a book?,return_book
+Where do I return borrowed books?,return_book
+Can I return a book after library hours?,return_book
+Is there a book drop box?,return_book
+Can someone else return my book for me?,return_book
+Paano magbalik ng libro?,return_book
+What if I return a book late?,return_book
+Can I return a book to any section?,return_book
+How do I return a book if the library is closed?,return_book
+Do I need to show my card when returning?,return_book
+I want to return my books,return_book
+How do I know my return was recorded?,return_book
+How much is the fine for overdue books?,overdue_fines
+What happens if I return a book late?,overdue_fines
+How much do I pay for a late book?,overdue_fines
+What is the overdue penalty?,overdue_fines
+Magkano ang multa kapag late ang libro?,overdue_fines
+How do I pay my library fine?,overdue_fines
+Do I have fines?,overdue_fines
+Can fines be waived?,overdue_fines
+How do I check my fines?,overdue_fines
+What is the penalty per day?,overdue_fines
+Is there a grace period for returning books?,overdue_fines
+Will I be blocked from borrowing if I have unpaid fines?,overdue_fines
+Can I pay my fine online?,overdue_fines
+What if I can't pay the fine right now?,overdue_fines
+Where do I pay overdue fees?,overdue_fines
+What if I lose a borrowed book?,lost_damaged_book
+I damaged a library book,lost_damaged_book
+What happens if I lose a book?,lost_damaged_book
+Nawala ko ang hiniram kong libro,lost_damaged_book
+How much do I pay for a lost book?,lost_damaged_book
+Do I need to replace the book?,lost_damaged_book
+"A page got torn, what should I do?",lost_damaged_book
+I spilled water on a library book,lost_damaged_book
+Can I replace a lost book with a new copy?,lost_damaged_book
+What is the penalty for damaged books?,lost_damaged_book
+I can't find the book I borrowed,lost_damaged_book
+What should I do if my book is damaged?,lost_damaged_book
+How do I cite a book in APA?,citation_apa
+APA citation format for a book,citation_apa
+How do I write an APA 7 reference?,citation_apa
+What is APA 7th edition?,citation_apa
+APA format for a journal article,citation_apa
+How do I cite a website in APA?,citation_apa
+Give me an APA citation example,citation_apa
+How do I do in-text citations in APA?,citation_apa
+How do I cite a book with two authors in APA?,citation_apa
+APA format for a thesis,citation_apa
+How do I cite an online article in APA 7?,citation_apa
+What is the format for a reference list in APA?,citation_apa
+Paano mag-cite sa APA?,citation_apa
+How do I cite a YouTube video in APA?,citation_apa
+Can you generate an APA citation for me?,citation_apa
+How do I cite without an author in APA?,citation_apa
+How do I cite a book in MLA?,citation_mla
+MLA citation format,citation_mla
+What is MLA 9 format?,citation_mla
+How do I cite a website in MLA?,citation_mla
+MLA works cited example,citation_mla
+How do I do in-text citations in MLA?,citation_mla
+MLA format for a journal article,citation_mla
+How do I cite a source in MLA?,citation_mla
+Paano mag-cite sa MLA?,citation_mla
+What is the difference between APA and MLA?,citation_mla
+How do I cite my sources?,citation_general
+What citation style should I use?,citation_general
+What is a citation?,citation_general
+What is a bibliography?,citation_general
+What is the difference between a bibliography and a reference list?,citation_general
+Why do I need to cite sources?,citation_general
+What is plagiarism?,citation_general
+How do I avoid plagiarism?,citation_general
+How do I cite a source with no date?,citation_general
+What is Chicago style?,citation_general
+How do I paraphrase correctly?,citation_general
+Do you have citation guidelines?,citation_general
+Which citation style does the school require?,citation_general
+What is Harvard referencing?,citation_general
+How do I cite a thesis or dissertation?,citation_general
+Can you help me with my references?,citation_general
+Citation help please,citation_general
+What is DOI and do I need it in a citation?,citation_general
+Does the library have e-books?,e_resources
+Can I access online journals?,e_resources
+Is there an online database?,e_resources
+How do I access e-resources from home?,e_resources
+Do you have digital copies of books?,e_resources
+Where can I find research articles?,e_resources
+Does the library subscribe to journals?,e_resources
+How do I log in to the online library?,e_resources
+Can I download e-books?,e_resources
+Is there an institutional repository?,e_resources
+How can I access past theses online?,e_resources
+Do you have access to IEEE or ScienceDirect?,e_resources
+Where can I search for online resources?,e_resources
+Mayroon bang e-books ang library?,e_resources
+Does the library have Wi-Fi?,facilities_services
+Can I use the library computers?,facilities_services
+Is there a printing service?,facilities_services
+Do you offer photocopying?,facilities_services
+Can I scan documents in the library?,facilities_services
+Is there a study room?,facilities_services
+Can I reserve a discussion room?,facilities_services
+Is there a quiet study area?,facilities_services
+Are there charging stations?,facilities_services
+Do you have group study areas?,facilities_services
+Can I use my laptop in the library?,facilities_services
+Is there a printer I can use?,facilities_services
+How much is printing per page?,facilities_services
+Pwede bang mag-print sa library?,facilities_services
+Is there air conditioning in the reading area?,facilities_services
+Are there lockers available?,facilities_services
+Can I bring food into the library?,library_rules
+Can I bring drinks inside?,library_rules
+Are bags allowed in the library?,library_rules
+Can I talk inside the library?,library_rules
+Is my phone allowed in the library?,library_rules
+What are the library rules?,library_rules
+Can I bring a bag to the stacks?,library_rules
+Is there a dress code?,library_rules
+Can I sleep in the library?,library_rules
+Are visitors allowed?,library_rules
+Is there a time limit on computer use?,library_rules
+Can I take photos inside the library?,library_rules
+Pwede bang magdala ng pagkain sa library?,library_rules
+Do I need to leave my bag at the counter?,library_rules
+What behavior is not allowed in the library?,library_rules
+Can I borrow thesis copies?,thesis_reference_access
+Where can I find past theses?,thesis_reference_access
+Can I borrow reference books?,thesis_reference_access
+Can I take reference books home?,thesis_reference_access
+Can I photocopy pages from a thesis?,thesis_reference_access
+Are thesis books for in-library use only?,thesis_reference_access
+How do I access the thesis collection?,thesis_reference_access
+Can I read dissertations here?,thesis_reference_access
+Where are the reference books kept?,thesis_reference_access
+Is the thesis available online?,thesis_reference_access
+Pwede bang hiramin ang thesis?,thesis_reference_access
+Can I borrow encyclopedias?,thesis_reference_access
+Can alumni use the library?,visitors_alumni
+Can visitors borrow books?,visitors_alumni
+Are outside researchers allowed?,visitors_alumni
+Can I bring a guest to the library?,visitors_alumni
+Can non-students use the library?,visitors_alumni
+Do alumni have borrowing privileges?,visitors_alumni
+Can students from other schools enter?,visitors_alumni
+Can I use the library if I'm not enrolled?,visitors_alumni
+What are the policies for visitors?,visitors_alumni
+Is there a guest pass?,visitors_alumni
+Can I talk to a librarian?,contact_librarian
+How do I contact the library?,contact_librarian
+What is the library's phone number?,contact_librarian
+What's the library email?,contact_librarian
+Can a librarian help me with research?,contact_librarian
+Where is the help desk?,contact_librarian
+I need to speak to a person,contact_librarian
+Can I email the library?,contact_librarian
+Is there a librarian on duty?,contact_librarian
+Who is in charge of the library?,contact_librarian
+Can I ask the librarian for help with my topic?,contact_librarian
+I have a complaint about the library service,contact_librarian
+Pwede ko bang makausap ang librarian?,contact_librarian
+What is the Dewey Decimal System?,general_library_knowledge
+What does a librarian do?,general_library_knowledge
+What is a call number?,general_library_knowledge
+What is the difference between a call number and an ISBN?,general_library_knowledge
+What is an ISBN?,general_library_knowledge
+What is a primary source?,general_library_knowledge
+What is a secondary source?,general_library_knowledge
+What is the difference between primary and secondary sources?,general_library_knowledge
+How do I know if a source is credible?,general_library_knowledge
+What is a peer-reviewed journal?,general_library_knowledge
+What is an OPAC?,general_library_knowledge
+What is a library catalog?,general_library_knowledge
+What is an abstract?,general_library_knowledge
+What is a reference book?,general_library_knowledge
+What is a periodical?,general_library_knowledge
+What is an institutional repository?,general_library_knowledge
+Can I borrow a book from another library?,out_of_scope_interlibrary
+Do you offer interlibrary loan?,out_of_scope_interlibrary
+Can you request a book from a different school's library?,out_of_scope_interlibrary
+Can someone fetch the book for me?,out_of_scope_interlibrary
+Can I order a book to be delivered to me?,out_of_scope_interlibrary
+Can the staff get the book from the shelf for me?,out_of_scope_interlibrary
+Do you deliver books?,out_of_scope_interlibrary
+What's the weather today?,fallback_unrelated
+Tell me a joke,fallback_unrelated
+Who is the president?,fallback_unrelated
+What is the capital of France?,fallback_unrelated
+What time is it?,fallback_unrelated
+Can you do my homework?,fallback_unrelated
+How are my grades?,fallback_unrelated
+Where is the cafeteria?,fallback_unrelated
+When is the enrollment?,fallback_unrelated
+What is the tuition fee?,fallback_unrelated
+Order me a pizza,fallback_unrelated
+Play some music,fallback_unrelated

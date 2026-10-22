@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Environment – NEVER commit secrets
+.env
+.env.local
+.env.production
+
+# Vercel
+.vercel/
+
+# Test artefacts
+test_results.json
