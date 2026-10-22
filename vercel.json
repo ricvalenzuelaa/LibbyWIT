@@ -2,11 +2,11 @@
   "version": 2,
   "rewrites": [
     {
-      "source": "/chat",
+      "source": "/",
       "destination": "/api/index.py"
     },
     {
-      "source": "/((?!LibbyWIT\\.jpg|public/).*)",
+      "source": "/chat",
       "destination": "/api/index.py"
     }
   ]
