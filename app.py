@@ -148,13 +148,13 @@ button:disabled{opacity:0.6;cursor:not-allowed}
 <body>
 <main class='shell'>
   <header class='topbar'>
-    <h1>WIT Library Chatbot</h1>
-    <p class='subtitle'>Ask about hours, borrowing, penalties, library cards, catalog availability, citations, or book recommendations.</p>
+    <h1>LibbyWIT</h1>
+    <p class='subtitle'>Ask, Discover, Learn.</p>
     <div class='status'>● Online &bull; Powered by Ollama llama3</div>
   </header>
   <section id='chat' class='chat' aria-live='polite'>
     <div class='bot'>
-      <b>Library Assistant</b><br>
+      <b>LibbyWIT Assistant</b><br>
       Hello! How can I help you today? I can answer routine questions about library hours, borrowing, overdue items, library cards, catalog availability, and citation help.
       <div class='meta'>For account-specific or complex concerns, please contact library staff.</div>
     </div>
