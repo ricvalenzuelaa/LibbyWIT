@@ -1,27 +1,13 @@
 {
   "version": 2,
-  "builds": [
+  "rewrites": [
     {
-      "src": "api/index.py",
-      "use": "@vercel/python"
+      "source": "/chat",
+      "destination": "/api/index.py"
     },
     {
-      "src": "LibbyWIT.jpg",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/LibbyWIT.jpg",
-      "dest": "/LibbyWIT.jpg"
-    },
-    {
-      "src": "/chat",
-      "dest": "/api"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/api"
+      "source": "/((?!LibbyWIT\\.jpg|logo\\.jpg).*)",
+      "destination": "/api/index.py"
     }
   ]
 }
