@@ -6,7 +6,7 @@
       "destination": "/api/index.py"
     },
     {
-      "source": "/((?!LibbyWIT\\.jpg|logo\\.jpg).*)",
+      "source": "/((?!LibbyWIT\\.jpg|public/).*)",
       "destination": "/api/index.py"
     }
   ]
