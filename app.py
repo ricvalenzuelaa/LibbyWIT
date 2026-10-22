@@ -1,5 +1,6 @@
 import json
 import os
+import re  # Added re module to strip markdown formatting
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -11,6 +12,12 @@ from topic_validator import validate_user_query, EXACT_REFUSAL_MESSAGE
 from ollama_client import query_ollama
 
 ROOT = Path(__file__).resolve().parent
+
+def clean_markdown(text: str) -> str:
+    """Utility function to strip asterisks (*) and underscores (_) from text."""
+    if not text:
+        return ""
+    return re.sub(r'[\*_]{1,2}', '', text)
 
 def classify(message: str, history=None, use_llm: bool = True) -> dict:
     """
@@ -41,7 +48,7 @@ def classify(message: str, history=None, use_llm: bool = True) -> dict:
         return {
             "intent": "fallback",
             "confidence": 0.20,
-            "answer": EXACT_REFUSAL_MESSAGE
+            "answer": clean_markdown(EXACT_REFUSAL_MESSAGE)
         }
 
     # Step 3: Handle Ambiguous Queries
@@ -49,7 +56,7 @@ def classify(message: str, history=None, use_llm: bool = True) -> dict:
         return {
             "intent": "ambiguous",
             "confidence": 0.50,
-            "answer": val["answer"]
+            "answer": clean_markdown(val["answer"])
         }
 
     # Step 4: Handle Conversational Courtesies (Greetings, Goodbyes, Thanks)
@@ -57,7 +64,7 @@ def classify(message: str, history=None, use_llm: bool = True) -> dict:
         return {
             "intent": intent,
             "confidence": 0.99,
-            "answer": val["answer"]
+            "answer": clean_markdown(val["answer"])
         }
 
     # Step 5: Accepted Library Query -> Call Ollama API
@@ -73,7 +80,7 @@ def classify(message: str, history=None, use_llm: bool = True) -> dict:
         return {
             "intent": intent,
             "confidence": confidence,
-            "answer": answer
+            "answer": clean_markdown(answer)
         }
     else:
         # Fast non-LLM path for offline evaluation if needed
@@ -81,7 +88,7 @@ def classify(message: str, history=None, use_llm: bool = True) -> dict:
         return {
             "intent": intent,
             "confidence": 1.0,
-            "answer": verified_ans
+            "answer": clean_markdown(verified_ans)
         }
 
 

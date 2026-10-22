@@ -7,6 +7,7 @@ and unavailable models gracefully without exposing internal tracebacks.
 """
 
 import json
+import re  # Added re module to strip markdown characters
 import urllib.request
 import urllib.error
 from typing import List, Dict, Any, Optional
@@ -27,6 +28,7 @@ BASE_SYSTEM_PROMPT = (
     "If a question contains both library-related and unrelated requests, answer only the library-related portion.\n\n"
     "Do not claim to have searched the actual library catalog, checked a user's account, or verified book availability "
     "unless the application has genuinely performed that action.\n\n"
+    "Respond in plain text only. Do NOT use markdown styling such as asterisks (*), underscores (_), bolding (**), or italics (*).\n\n"
     "Remain professional, helpful, and focused on library assistance."
 )
 
@@ -74,11 +76,13 @@ def _friendly_error(http_status: int, intent: str) -> Dict[str, Any]:
         )
 
     if verified_fallback:
+        # Strip asterisks/underscores from fallback text as well
+        clean_fallback = re.sub(r'[\*_]{1,2}', '', verified_fallback)
         return {
             "success": True,
             "answer": (
                 f"I'm unable to reach the AI service right now, but here is verified "
-                f"WIT Library information for your query:\n\n{verified_fallback}"
+                f"WIT Library information for your query:\n\n{clean_fallback}"
             ),
             "source": "fallback_data"
         }
@@ -161,9 +165,12 @@ def query_ollama(
             if not content:
                 raise RuntimeError("Empty response received from Ollama model.")
 
+            # STRIP MARKDOWN ASTERISKS (*) AND UNDERSCORES (_) HERE
+            clean_content = re.sub(r'[\*_]{1,2}', '', content)
+
             return {
                 "success": True,
-                "answer": content,
+                "answer": clean_content,
                 "source": "ollama"
             }
 
@@ -175,12 +182,13 @@ def query_ollama(
         # Connection failure – Ollama not running locally, or network issue in production
         verified_fallback = get_intent_answer(intent)
         if verified_fallback:
+            clean_fallback = re.sub(r'[\*_]{1,2}', '', verified_fallback)
             return {
                 "success": True,
                 "answer": (
                     "I'm unable to reach the AI service at this time. "
                     "Here is the verified WIT Library information for your query:\n\n"
-                    f"{verified_fallback}"
+                    f"{clean_fallback}"
                 ),
                 "source": "fallback_data"
             }
@@ -196,9 +204,10 @@ def query_ollama(
     except Exception:
         verified_fallback = get_intent_answer(intent)
         if verified_fallback:
+            clean_fallback = re.sub(r'[\*_]{1,2}', '', verified_fallback)
             return {
                 "success": True,
-                "answer": verified_fallback,
+                "answer": clean_fallback,
                 "source": "fallback_data"
             }
         return {
