@@ -4,9 +4,17 @@
     {
       "src": "api/index.py",
       "use": "@vercel/python"
+    },
+    {
+      "src": "LibbyWIT.jpg",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
+    {
+      "src": "/LibbyWIT.jpg",
+      "dest": "/LibbyWIT.jpg"
+    },
     {
       "src": "/chat",
       "dest": "/api"
