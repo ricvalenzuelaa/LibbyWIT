@@ -97,8 +97,23 @@ PAGE = """<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WIT Library Chatbot</title>
+<title>LibbyWIT Chatbot</title>
+<link rel="icon" type="LibbyWIT.jpg" href="/logo.jpg">
 <style>
+.topbar-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.header-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: #fff;
+  padding: 4px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  object-fit: contain;
+}
 body{font-family:Tahoma,Arial,sans-serif;margin:0;padding:28px 16px;background:linear-gradient(135deg,#fff4e8,#ffe3c3);color:#3a271d;min-height:100vh;box-sizing:border-box}
 .shell{max-width:900px;margin:0 auto;min-height:calc(100vh - 56px);background:#fff;border:1px solid #f3c79e;border-radius:22px;overflow:hidden;box-shadow:0 18px 45px #b85b1d2b;display:flex;flex-direction:column}
 .topbar{padding:30px 38px 26px;background:linear-gradient(135deg,#f58b27,#d95f02);color:#fff;position:relative}
@@ -262,7 +277,7 @@ async function ask(text){
     botBubble.className = 'bot';
     
     const botLabel = document.createElement('b');
-    botLabel.textContent = 'Library Assistant';
+    botLabel.textContent = 'LibbyWIT Assistant';
     botBubble.appendChild(botLabel);
     botBubble.appendChild(document.createElement('br'));
     
@@ -288,7 +303,7 @@ async function ask(text){
     removeTyping();
     const errBubble = document.createElement('div');
     errBubble.className = 'bot';
-    errBubble.innerHTML = '<b>Library Assistant</b><br>Sorry, something went wrong while connecting to the assistant. Please make sure the local Ollama service is running, or visit the WIT Library circulation desk for help.<div class="meta">Error connecting to service</div>';
+    errBubble.innerHTML = '<b>LibbyWIT Assistant</b><br>Sorry, something went wrong while connecting to the assistant. Please make sure the local Ollama service is running, or visit the WIT Library circulation desk for help.<div class="meta">Error connecting to service</div>';
     c.appendChild(errBubble);
   } finally {
     setControlsDisabled(false);
