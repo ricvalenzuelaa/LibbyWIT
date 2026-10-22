@@ -104,7 +104,6 @@ h1{font-size:28px;letter-spacing:.2px;margin:0 0 8px;color:#fff}
 .bot{background:#fff4e8;border:1px solid #f4d2b0;color:#55351f;margin-right:auto;border-bottom-left-radius:5px}
 .user{background:linear-gradient(135deg,#f58b27,#df6509);color:#fff;margin-left:auto;border-bottom-right-radius:5px}
 .meta{font-size:11px;color:#8a6a58;margin-top:7px}
-.bot-text{display:block;white-space:normal;overflow-wrap:anywhere}.bot-text p{margin:8px 0}.bot-text p:first-child{margin-top:6px}.bot-text p:last-child{margin-bottom:4px}.bot-text h1,.bot-text h2,.bot-text h3,.bot-text h4{color:#55351f;margin:12px 0 6px;letter-spacing:0}.bot-text ul,.bot-text ol{margin:7px 0;padding-left:24px}.bot-text li{margin:3px 0}.bot-text blockquote{margin:8px 0;padding:4px 12px;border-left:3px solid #e87511;color:#76543d}.bot-text code{background:#f7e5d4;padding:2px 5px;border-radius:4px;font-family:Consolas,monospace}.bot-text pre{white-space:pre-wrap;background:#f7e5d4;padding:10px;border-radius:8px;overflow:auto}.bot-text a{color:#a94d08;text-decoration:underline}
 .user .meta{color:#fff0e2}
 .suggestions{padding:18px 38px 24px;background:#fff8f0;border-top:1px solid #f3dfcc}
 .suggestions-title{font-size:12px;font-weight:bold;color:#8a6a58;margin-bottom:12px}
@@ -192,28 +191,21 @@ function removeTyping(){
   if(t) t.remove();
 }
 
-// Display AI replies as ordinary readable text, removing Markdown markers.
-// Escape HTML first so model output cannot inject executable HTML.
-function escapeHtml(value){
-  return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-}
-function renderPlainText(value){
-  let s = String(value || '').replace(/\r\n?/g, '\n');
-  // Keep link labels, but remove Markdown link syntax.
-  s = s.replace(/\[([^\]]+)\]\(https?:\/\/[^\s)]+\)/g, '$1');
-  // Remove code/emphasis markers without changing the words between them.
-  s = s.replace(/```[\w-]*\n?/g, '').replace(/`([^`]+)`/g, '$1');
-  s = s.replace(/\*{1,3}(.*?)\*{1,3}/g, '$1');
-  s = s.replace(/_{2}(.+?)_{2}/g, '$1');
-  s = s.replace(/(^|[^\w])_([^_\n]+)_([^\w]|$)/g, '$1$2$3');
-  // Remove Markdown heading, quote, list, and horizontal-rule markers.
-  s = s.replace(/^\s{0,3}#{1,6}\s+/gm, '');
-  s = s.replace(/^\s*>\s?/gm, '');
-  s = s.replace(/^\s*[-*+]\s+/gm, '');
-  s = s.replace(/^\s*\d+[.)]\s+/gm, '');
-  s = s.replace(/^\s*[-*_]{3,}\s*$/gm, '');
-  return escapeHtml(s).replace(/\n/g, '<br>');
+function typewrite(element, text, speed = 10){
+  return new Promise(resolve => {
+    let i = 0;
+    function type(){
+      if(i < text.length){
+        element.textContent += text.charAt(i);
+        i++;
+        c.scrollTop = c.scrollHeight;
+        setTimeout(type, speed);
+      } else {
+        resolve();
+      }
+    }
+    type();
+  });
 }
 
 function setControlsDisabled(disabled){
@@ -243,38 +235,17 @@ async function ask(text){
       history: conversationHistory
     };
 
-    // Vercel rewrites /chat to the Python function. Try /api directly as a
-    // compatibility fallback if the /chat rewrite is missing in a deployment.
-    let r;
-    try {
-      r = await fetch('/chat', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(payload)
-      });
-      if (r.status === 404 || r.status === 405) {
-        r = await fetch('/api', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify(payload)
-        });
-      }
-    } catch (firstError) {
-      r = await fetch('/api', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(payload)
-      });
-    }
+    const r = await fetch('/chat', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload)
+    });
 
     if(!r.ok) {
-      throw new Error('Chat API returned HTTP ' + r.status);
+      throw new Error('Server returned HTTP ' + r.status);
     }
 
     const d = await r.json();
-    if (!d || typeof d.answer !== 'string') {
-      throw new Error('Chat API response did not include an answer');
-    }
     const ms = (performance.now() - t).toFixed(1);
     
     removeTyping();
@@ -299,30 +270,18 @@ async function ask(text){
 
     c.appendChild(botBubble);
     
-    // Show ordinary text with Markdown formatting symbols removed.
-    textSpan.innerHTML = renderPlainText(d.answer);
-    c.scrollTop = c.scrollHeight;
+    // Type out the answer smoothly
+    await typewrite(textSpan, d.answer);
 
     // Save turn to history
     conversationHistory.push({role: 'user', content: text});
     conversationHistory.push({role: 'assistant', content: d.answer});
 
   } catch(err) {
-    console.error('WITty chat request failed:', err);
     removeTyping();
     const errBubble = document.createElement('div');
     errBubble.className = 'bot';
-    const label = document.createElement('b');
-    label.textContent = 'Library Assistant';
-    errBubble.appendChild(label);
-    errBubble.appendChild(document.createElement('br'));
-    const message = document.createElement('span');
-    message.textContent = 'I could not send your message to the chat service. Please try again. If this keeps happening, check the Vercel deployment logs.';
-    errBubble.appendChild(message);
-    const meta = document.createElement('div');
-    meta.className = 'meta';
-    meta.textContent = 'Chat request failed';
-    errBubble.appendChild(meta);
+    errBubble.innerHTML = '<b>Library Assistant</b><br>Sorry, something went wrong while connecting to the assistant. Please make sure the local Ollama service is running, or visit the WIT Library circulation desk for help.<div class="meta">Error connecting to service</div>';
     c.appendChild(errBubble);
   } finally {
     setControlsDisabled(false);
@@ -332,13 +291,6 @@ async function ask(text){
 }
 
 f.addEventListener('submit', e => {
-  e.preventDefault();
-  ask(m.value);
-});
-
-// Explicit click handler helps ensure the Send button works even if the form's
-// submit behavior is altered by browser extensions or surrounding markup.
-btn.addEventListener('click', e => {
   e.preventDefault();
   ask(m.value);
 });
